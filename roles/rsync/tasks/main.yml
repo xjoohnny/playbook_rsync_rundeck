@@ -1,0 +1,6 @@
+---
+- include: setupfolders.yml
+
+- include: rsync.yml
+
+- include: cleanup.yml

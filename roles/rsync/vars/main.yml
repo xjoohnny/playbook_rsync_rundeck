@@ -1,0 +1,9 @@
+---
+BACKUP_PATH: "/tmp"
+NUMBER_OF_BACKUPS: 3
+RUNDECK1_HOST: "192.168.140.11"
+RUNDECK2_HOST: "192.168.140.12"
+DIRECTORIES:
+  logs: "/var/log/rundeck/"
+  ansible: "/etc/ansible/"
+  rundeck: "/etc/rundeck/"

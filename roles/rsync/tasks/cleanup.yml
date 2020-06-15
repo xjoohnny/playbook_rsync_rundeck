@@ -1,0 +1,15 @@
+---
+- name: CLEANUP | Verificando backups
+  shell: ls -1dt {{ BACKUP_PATH }}/* | grep 'backup' | tail -n +$(({{ NUMBER_OF_BACKUPS }} + 1)) 
+  register: backups_to_clean
+  when: NUMBER_OF_BACKUPS > 0
+
+
+- name: CLEANUP | Backups a serem removidos
+  debug:
+    msg: "{{ backups_to_clean.stdout_lines }}"  
+
+
+- name: CLEANUP | Removendo Backups Antigos
+  shell: ls -1dt {{ BACKUP_PATH }}/* | grep 'backup' | tail -n +$(({{ NUMBER_OF_BACKUPS }} + 1)) | xargs rm -rf
+  when: NUMBER_OF_BACKUPS > 0
