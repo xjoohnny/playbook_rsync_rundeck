@@ -3,7 +3,7 @@
   synchronize:
     set_remote_user: yes
     mode: pull
-    src: "root@{{ RUNDECK1_HOST }}:{{ item.source }}"
+    src: "{{ SSH_USER }}@{{ RUNDECK1_HOST }}:{{ item.source }}"
     dest: "{{ BACKUP_PATH }}/backup-rundeck-{{ backup_date.stdout }}/{{ item.dest }}"
   loop:
     - {source: "{{ DIRECTORIES.logs }}", dest: "logs"}
@@ -23,7 +23,7 @@
   synchronize:
     set_remote_user: yes
     src: "{{ BACKUP_PATH }}/backup-rundeck-{{ backup_date.stdout }}/{{ item.source }}"
-    dest: "root@{{ RUNDECK2_HOST }}:{{ item.dest }}"
+    dest: "{{ SSH_USER }}@{{ RUNDECK2_HOST }}:{{ item.dest }}"
     delete: yes
   loop:
     - {source: "logs/", dest: "{{ DIRECTORIES.logs }}"}
