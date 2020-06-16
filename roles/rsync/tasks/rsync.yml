@@ -4,7 +4,7 @@
     set_remote_user: yes
     mode: pull
     src: "root@{{ RUNDECK1_HOST }}:{{ item.source }}"
-    dest: /tmp/backup-rundeck-{{ backup_date.stdout }}/{{ item.dest }}
+    dest: "{{ BACKUP_PATH }}/backup-rundeck-{{ backup_date.stdout }}/{{ item.dest }}"
   loop:
     - {source: "{{ DIRECTORIES.logs }}", dest: "logs"}
     - {source: "{{ DIRECTORIES.ansible }}", dest: "ansible"}
@@ -22,7 +22,7 @@
 - name: RSYNC | Sincronizando arquivos locais para Rundeck02
   synchronize:
     set_remote_user: yes
-    src: /tmp/backup-rundeck-{{ backup_date.stdout }}/{{ item.source }}
+    src: "{{ BACKUP_PATH }}/backup-rundeck-{{ backup_date.stdout }}/{{ item.source }}"
     dest: "root@{{ RUNDECK2_HOST }}:{{ item.dest }}"
     delete: yes
   loop:

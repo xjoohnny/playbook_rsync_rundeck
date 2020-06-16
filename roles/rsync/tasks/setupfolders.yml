@@ -5,7 +5,7 @@
 
 - name: SETUPFOLDER | Criando pasta raiz
   file:
-    path: /tmp/backup-rundeck-{{ backup_date.stdout }}/{{ item }}
+    path: "{{ BACKUP_PATH }}/backup-rundeck-{{ backup_date.stdout }}/{{ item }}"
     state: directory
     recurse: yes
   loop:
